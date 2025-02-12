@@ -5,6 +5,8 @@ import { GoogleGenerativeAI } from '@google/generative-ai';
 import { processCommand } from './commands.js';
 import { fileURLToPath } from 'url';
 import { dirname, join } from 'path';
+import https from 'https';
+import fs from 'fs';
 
 dotenv.config();
 
@@ -16,6 +18,28 @@ const app = express();
 
 app.use(cors());
 app.use(express.json());
+
+// Load your SSL certificate and private key
+// const privateKey = fs.readFileSync('key.pem', 'utf8');
+// const certificate = fs.readFileSync('cert.pem', 'utf8');
+
+// const passphrase = 'zaman';
+// const credentials = { key: privateKey, passphrase, cert: certificate };
+
+// Create an HTTPS server with your Express app
+// const httpsServer = https.createServer(credentials, app);
+
+function ensureSecure(req, res, next) {
+  if (req.secure) {
+    // Request is already secure (HTTPS)
+    return next();
+  }
+  // Redirect to HTTPS version of the URL
+  res.redirect('https://' + req.hostname + req.originalUrl);
+}
+
+// Use the middleware to enforce HTTPS
+// app.use(ensureSecure);
 
 // Serve static files from the dist directory
 app.use(express.static(join(__dirname, '../dist')));
@@ -85,3 +109,7 @@ app.get('*', (req, res) => {
 app.listen(PORT, IP_ADDRESS, () => {
   console.log(`Server running at http://${IP_ADDRESS}:${PORT}`);
 });
+
+// httpsServer.listen(PORT, () => {
+//   console.log(`Server running at https://${IP_ADDRESS}:${PORT}`);
+// });

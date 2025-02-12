@@ -8,7 +8,7 @@ function App() {
   const [messages, setMessages] = useState<Message[]>([
     {
       id: '1',
-      content: "✨ Hello! I'm your AI assistant powered by Gemini. Type /help to see what I can do!",
+      content: "✨ Hello! I'm your AI assistant made by Zaman Sheikh. Type /help to see what I can do!",
       sender: 'bot',
       timestamp: new Date(),
     },

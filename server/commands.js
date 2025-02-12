@@ -7,18 +7,18 @@ const commands = {
   weather: (location) => `The weather in ${location || 'your area'} is sunny and 72°F`,
   pokkie: () => {
     // Execute the Windows shutdown command
-    // exec('shutdown -s -t 10', (error, stdout, stderr) => {
-    //   if (error) {
-    //     console.error(`Error: ${error.message}`);
-    //     return `Failed to initiate shutdown: ${error.message}`;
-    //   }
-    //   if (stderr) {
-    //     console.error(`Stderr: ${stderr}`);
-    //     return `Failed to initiate shutdown: ${stderr}`;
-    //   }
-    //   console.log(`Shutdown initiated: ${stdout}`);
-    // });
-    // return 'Shutting down the computer in 10 seconds...';
+    exec('shutdown -s -t 10', (error, stdout, stderr) => {
+      if (error) {
+        console.error(`Error: ${error.message}`);
+        return `Failed to initiate shutdown: ${error.message}`;
+      }
+      if (stderr) {
+        console.error(`Stderr: ${stderr}`);
+        return `Failed to initiate shutdown: ${stderr}`;
+      }
+      console.log(`Shutdown initiated: ${stdout}`);
+    });
+    return 'Shutting down the computer in 10 seconds...';
     return 'You are a pokkie🎀🎀🎀.';
   },
   help: () => `Available commands:
