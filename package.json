@@ -5,7 +5,8 @@
   "type": "module",
   "scripts": {
     "dev": "concurrently \"vite --host\" \"node server/index.js\"",
-    "build": "vite build && tsc",
+    "buildw": "vite build",
+    "builds": "tsc",
     "start": "vite preview",
     "lint": "eslint .",
     "preview": "vite preview"
