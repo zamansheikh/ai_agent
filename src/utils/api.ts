@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const api = axios.create({
-  baseURL: 'http://192.168.10.170:3000/api',
+  baseURL: 'http://45.55.209.88:6000/api',
 });
 
 export const sendMessage = async (message: string): Promise<string> => {
